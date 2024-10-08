@@ -2,7 +2,7 @@ import numpy as np
 
 class SAW:
     def __init__(self, decision_matrix, weights):
-        self.decision_matrix = decision_matrix
+        self.decision_matrix = np.array(decision_matrix)
         self.weights = np.array(weights)
 
     def normalize_matrix(self):
@@ -31,3 +31,11 @@ class SAW:
     def from_parameters(decision_matrix, weights):
         saw_instance = SAW(np.array(decision_matrix), np.array(weights))
         return saw_instance.calculate_scores()
+    
+    @staticmethod
+    def from_file(file_content):
+        # Leer el contenido del archivo y convertirlo en una matriz y un arreglo de pesos
+        lines = [list(map(float, line.strip().split(','))) for line in file_content]
+        decision_matrix = lines[:-1]  # Matriz de decisiones
+        weights = lines[-1]  # La última fila contiene los pesos
+        return SAW(decision_matrix, weights)   
