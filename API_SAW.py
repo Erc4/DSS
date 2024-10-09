@@ -23,11 +23,7 @@ def solve_with_file():
     file_content = file.read().decode('utf-8').splitlines()
     saw_instance = SAW.from_file(file_content) 
     scores = saw_instance.calculate_scores()
-    normalized_matrix = saw_instance.normalize_matrix() # Leer el archivo, decodificar y dividir en líneas
-    #scores = SAW.from_file(file_content)  # Llamar al método sobrecargado
-    
-    # Convertir los scores a una lista
-    #scores_list = scores.tolist() if isinstance(scores, np.ndarray) else scores
+    normalized_matrix = saw_instance.normalize_matrix() 
 
     return jsonify({
                     "scores": scores.tolist(),
